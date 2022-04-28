@@ -1,4 +1,4 @@
-import styles from './user.module.scss';
+import styles from './user.module.css';
 import { FiUsers } from 'react-icons/fi';
 
 export interface UserModel {
