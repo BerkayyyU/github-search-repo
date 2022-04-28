@@ -4,13 +4,13 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-align: left;
-  margin: 1rem 0rem;
+  margin: 0.5rem 0rem;
 }
 
 .repository {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #444c56;
-  margin: 1rem;
-  padding: 1rem;
+  border-bottom: 1px solid var(--color-border-default);
+  margin: 1rem 1rem 1rem 0rem;
+  padding: 1rem 1rem 1rem 0rem;
 }
