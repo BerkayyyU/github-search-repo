@@ -32,7 +32,7 @@ const Profile = () => {
       });
   }, []);
   return (
-    <div className="flex mx-8 mt-24">
+    <div className="flex flex-col md:flex-row mx-4 sm:mx-8 mt-20 sm:mt-24">
       {user ? (
         <User
           id={user.id}
@@ -44,11 +44,9 @@ const Profile = () => {
           following={user.following}
         />
       ) : null}
-      <div className="w-full flex flex-col items-center ml-4 my-8">
-        <div className="w-full mx-4 border-color">
-          <input type="text" onChange={handleChange} placeholder="Find a repository..." className={styles.search} />
-        </div>
-        <ul className="h-full w-full overflow-auto" id="style-1">
+      <div className="w-full flex flex-col items-center md:ml-8">
+        <input type="text" onChange={handleChange} placeholder="Find a repository..." className={styles.search} />
+        <ul className="h-full w-full overflow-auto">
           {filteredRepos.length > 0 ? (
             filteredRepos.map((repo: RepositoryModel) => {
               return (

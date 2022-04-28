@@ -1,0 +1,22 @@
+.avatar {
+  max-width: 256px;
+  max-height: 256px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+
+  @media screen and (max-width: 768px) {
+    max-width: 128px;
+    max-height: 128px;
+  }
+}
+
+.user {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 256px;
+
+  @media screen and (max-width: 768px) {
+    flex: 0 0 128px;
+    flex-direction: row;
+  }
+}
