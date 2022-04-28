@@ -1,0 +1,16 @@
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: left;
+  margin: 1rem 0rem;
+}
+
+.repository {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #444c56;
+  margin: 1rem;
+  padding: 1rem;
+}
