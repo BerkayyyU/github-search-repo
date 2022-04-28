@@ -53,11 +53,13 @@ const Profile = () => {
                 <Repository
                   key={repo.id}
                   id={repo.id}
-                  svn_url={repo.svn_url}
+                  html_url={repo.html_url}
                   name={repo.name}
+                  visibility={repo.visibility}
                   description={repo.description}
                   language={repo.language}
                   updated_at={repo.updated_at}
+                  stargazers_count={repo.stargazers_count}
                 />
               );
             })
