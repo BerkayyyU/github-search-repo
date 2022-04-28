@@ -14,7 +14,7 @@ const Profile = () => {
   const githubApi = 'https://api.github.com/';
 
   function handleChange(e: React.FormEvent<HTMLInputElement>) {
-    const filteredRepos = repos.filter((repo: RepositoryModel) => repo.name.includes(e.currentTarget.value));
+    const filteredRepos = repos.filter((repo: RepositoryModel) => repo.name.toLowerCase().includes(e.currentTarget.value.toLowerCase()));
     searchRepos(filteredRepos);
   }
 
