@@ -1,6 +1,4 @@
-import React from 'react';
-import { DiJavascript1 } from 'react-icons/di';
-import { SiTypescript, SiHtml5, SiJava, SiPython, SiVuedotjs } from 'react-icons/si';
+import LanguageIcon from '../languageIcon/languageIcon';
 import styles from './repository.module.css';
 
 export interface RepositoryModel {
@@ -12,43 +10,6 @@ export interface RepositoryModel {
   updated_at: string;
 }
 
-export const langIcons = [
-  {
-    name: 'JavaScript',
-    icon: <DiJavascript1 />,
-  },
-  {
-    name: 'TypeScript',
-    icon: <SiTypescript />,
-  },
-  {
-    name: 'HTML',
-    icon: <SiHtml5 />,
-  },
-  {
-    name: 'Java',
-    icon: <SiJava />,
-  },
-  {
-    name: 'Python',
-    icon: <SiPython />,
-  },
-  {
-    name: 'Vue',
-    icon: <SiVuedotjs />,
-  },
-];
-
-const DynamicFaIcon = ({ name }: any) => {
-  const IconComponent = name;
-  debugger;
-  if (!IconComponent) {
-    // Return a default one
-  }
-
-  return <IconComponent />;
-};
-
 const Repository = ({ svn_url, name, description, language, updated_at }: RepositoryModel) => {
   return (
     <div className={styles.repository}>
@@ -57,7 +18,7 @@ const Repository = ({ svn_url, name, description, language, updated_at }: Reposi
       </a>
       {description ? <p className={styles.description}>{description}</p> : null}
       <div className="flex items-center">
-        {langIcons.find((element: any) => element.name === language)?.icon}
+        <LanguageIcon langName={language} />
         <p className="ml-4">{language}</p>
       </div>
       <p className="text-left">{updated_at}</p>
