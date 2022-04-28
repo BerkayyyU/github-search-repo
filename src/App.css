@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.border-color {
+  border-bottom: 1px solid #444c56;
+}
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

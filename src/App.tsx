@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Repository from './components/repository';
-
-export interface Repo {
-  name: string;
-  description: string;
-  language: string;
-}
+import Repository, { Repo } from './components/repository';
 
 export interface User {
   avatar_url: string;
@@ -39,13 +33,23 @@ function App() {
   return (
     <div className="App">
       <div className="w-full flex flex-col items-center my-8">
-        <div>
+        <div className="border-color">
           <input type="text" onChange={handleChange} placeholder="Search repo" className="w-full mb-4" />
         </div>
         <ul>
           {filteredRepos.length > 0 ? (
-            filteredRepos.map((element: Repo, i: number) => {
-              return <Repository key={i} name={element.name} language={element.language} description={element.description}></Repository>;
+            filteredRepos.map((repo: Repo) => {
+              return (
+                <Repository
+                  key={repo.id}
+                  id={repo.id}
+                  svn_url={repo.svn_url}
+                  name={repo.name}
+                  description={repo.description}
+                  language={repo.language}
+                  updated_at={repo.updated_at}
+                ></Repository>
+              );
             })
           ) : (
             <p>No data</p>
