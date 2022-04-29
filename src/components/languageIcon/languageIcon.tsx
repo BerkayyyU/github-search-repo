@@ -35,7 +35,7 @@ export const LanguageIcons: LanguageIconModel[] = [
 
 const LanguageIcon = (props: { langName: string }): JSX.Element => {
   const lang = LanguageIcons.find((lang: LanguageIconModel) => lang.name === props.langName);
-  return lang ? lang.icon : <span>...</span>;
+  return lang ? lang.icon : <></>;
 };
 
 export default LanguageIcon;

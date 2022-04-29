@@ -1,7 +1,8 @@
 import LanguageIcon from '../languageIcon/languageIcon';
 import styles from './repository.module.css';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { dayInMilliseconds, hourInMilliseconds, minInMilliseconds, weekInMilliseconds } from '../../assets/constants/dates';
 
 export interface RepositoryModel {
   id: number;
@@ -15,15 +16,9 @@ export interface RepositoryModel {
 }
 
 const Repository = ({ html_url, name, visibility, description, language, updated_at, stargazers_count }: RepositoryModel) => {
-  const minInMilliseconds = 1000 * 60;
-  const hourInMilliseconds = minInMilliseconds * 60;
-  const dayInMilliseconds = hourInMilliseconds * 24;
-  const weekInMilliseconds = dayInMilliseconds * 7;
-
   const calculateUpdatedDate = (date: string) => {
     const dateInMilliseconds = new Date(date).getTime();
     const nowInMilliseconds = Date.now();
-
     switch (true) {
       case nowInMilliseconds - dateInMilliseconds < minInMilliseconds:
         return ` Updated ${Math.floor((nowInMilliseconds - dateInMilliseconds) / 1000)} seconds ago`;
@@ -45,13 +40,13 @@ const Repository = ({ html_url, name, visibility, description, language, updated
     const year = date.getFullYear();
     return `Updated on ${day}/${month}/${year}`;
   };
+  const [calculatedDate, setCalculatedDate] = useState<any>('');
+
   //does nothing special
   const [star, setStarVal] = useState<boolean>(stargazers_count === 1 ? true : false);
   const setStar = () => {
     setStarVal(!star);
   };
-
-  const [calculatedDate, setCalculatedDate] = useState<any>('');
 
   useEffect(() => {
     setCalculatedDate(calculateUpdatedDate(updated_at));

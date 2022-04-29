@@ -21,3 +21,13 @@
     transform: rotate(360deg);
   }
 }
+
+.error {
+  padding: 10px;
+  height: max-content;
+  width: 100%;
+  color: #ba3939;
+  background: #ffe0e0;
+  border: 1px solid #a33a3a;
+  border-radius: 10px;
+}
