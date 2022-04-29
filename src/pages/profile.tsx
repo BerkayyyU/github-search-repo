@@ -12,28 +12,31 @@ const Profile = () => {
 
   const [user, setUser] = useState<UserModel | null>(null);
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [repoLoading, setRepoLoading] = useState<boolean>(false);
+  const [pageLoading, setPageLoading] = useState<boolean>(false);
   const [errorReposMsg, setErrorRepos] = useState<string>('');
   const [errorUserMsg, setErrorUser] = useState<string>('');
 
   // Installed 3rd party library to debounce the search to avoid continuous requests
-  const inputChange = debounce((val: string) => {
+  const inputChange = debounce(async (val: string) => {
     const queryString = 'q=' + encodeURIComponent(`${val} in:name user:${githubName}`);
-    fetch(`${githubApi}search/repositories?` + new URLSearchParams(queryString))
+    setRepoLoading(true);
+    await fetch(`${githubApi}search/repositories?` + new URLSearchParams(queryString))
       .then((res) => res.json())
       .then((data) => {
         //error handling
         if (data.message) {
           setErrorRepos(data.message);
-          return;
+        } else {
+          const mappedRepos = data.items.map((item: any) => new RepositoryModel(item));
+          setRepos(mappedRepos);
         }
-        const mappedRepos = data.items.map((item: any) => new RepositoryModel(item));
-        setRepos(mappedRepos);
+        setRepoLoading(false);
       });
   }, 500);
 
   const fetchUser = async () => {
-    setLoading(true);
+    setPageLoading(true);
     await fetch(`${githubApi}users/${githubName}`)
       .then((res) => res.json())
       .then((data) => {
@@ -43,7 +46,7 @@ const Profile = () => {
         } else {
           setUser(data);
         }
-        setLoading(false);
+        setPageLoading(false);
       });
   };
 
@@ -53,7 +56,7 @@ const Profile = () => {
   // 1) Add pagination or infinitive loading to allow users to see all the repositories
   // 2) Set repoPerPage to default value for a better performance with less loading screen
   const fetchUserRepos = async () => {
-    setLoading(true);
+    setPageLoading(true);
     fetch(`${githubApi}users/${githubName}/repos?` + new URLSearchParams({ sort: repoSortQuery, per_page: repoPerPage }))
       .then((response) => response.json())
       .then((data) => {
@@ -64,7 +67,7 @@ const Profile = () => {
           const mappedRepos = data.map((item: any) => new RepositoryModel(item));
           setRepos(mappedRepos);
         }
-        setLoading(false);
+        setPageLoading(false);
       });
   };
 
@@ -75,8 +78,10 @@ const Profile = () => {
 
   return (
     <div>
-      {loading ? (
-        <Loading />
+      {pageLoading ? (
+        <div className="h-screen flex justify-center items-center">
+          <Loading />
+        </div>
       ) : (
         <div className="flex flex-col md:flex-row mx-4 sm:mx-8 mt-20 sm:mt-24">
           {user && !errorUserMsg ? (
@@ -95,27 +100,33 @@ const Profile = () => {
           {!errorReposMsg ? (
             <div className="w-full flex flex-col items-center md:ml-8">
               <input type="text" onChange={(event) => inputChange(event.target.value)} placeholder="Find a repository..." className={styles.search} />
-              <ul className="h-full w-full overflow-auto">
-                {repos.length > 0 ? (
-                  repos.map((repo: RepositoryModel) => {
-                    return (
-                      <Repository
-                        key={repo.id}
-                        id={repo.id}
-                        html_url={repo.html_url}
-                        name={repo.name}
-                        visibility={repo.visibility}
-                        description={repo.description}
-                        language={repo.language}
-                        updated_at={repo.updated_at}
-                        stargazers_count={repo.stargazers_count}
-                      />
-                    );
-                  })
-                ) : (
-                  <p className="w-full mt-4 text-center">No matching repositories.</p>
-                )}
-              </ul>
+              {repoLoading ? (
+                <div className="w-full h-full flex justify-center items-center">
+                  <Loading />
+                </div>
+              ) : (
+                <ul className="h-full w-full overflow-auto">
+                  {repos.length > 0 ? (
+                    repos.map((repo: RepositoryModel) => {
+                      return (
+                        <Repository
+                          key={repo.id}
+                          id={repo.id}
+                          html_url={repo.html_url}
+                          name={repo.name}
+                          visibility={repo.visibility}
+                          description={repo.description}
+                          language={repo.language}
+                          updated_at={repo.updated_at}
+                          stargazers_count={repo.stargazers_count}
+                        />
+                      );
+                    })
+                  ) : (
+                    <p className="w-full mt-4 text-center">No matching repositories.</p>
+                  )}
+                </ul>
+              )}
             </div>
           ) : (
             <Error error={errorReposMsg} />
