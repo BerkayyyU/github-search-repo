@@ -1,46 +1,51 @@
-# Getting Started with Create React App
+<h2 align="center">Github Search Repositories</h2>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About The Project
 
-## Available Scripts
+'Github repositories with search functionality' was developed in [React](https://reactjs.org/) with the help of [Typescript](https://www.typescriptlang.org/), [Github Api](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/).
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+### Starting The Development Server
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+First of all, clone the project.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+git clone https://github.com/BerkayyyU/mvst-coding-react.git
+```
 
-### `npm test`
+Open your terminal, navigate to the app's directory, and install the required dependencies.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm install
+```
 
-### `npm run build`
+Start the development server.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+As soon as the project compiles, a new tab with address http://localhost:3000 will open on your default browser.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Run [Storybook](https://storybook.js.org/)
 
-### `npm run eject`
+```
+npm run storybook
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Future Improvements
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<ul>
+    <li>Repositories pagination</li>
+    <li>Filter Repositories by type and language</li>
+    <li>Sort Repositories by selected order</li>
+    <li>Test cover</li>
+    <li>GraphQL</li>
+    <li>Search Github user with autocomplete</li>
+    <li>Select Github user dynamically</li>
+<ul>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Feedback
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+After months of developing with Angular, I realized that I missed React. It was a lot of fun for me to use [Github Api](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/) for the first time. I would be appreciated to hear your feedback!
