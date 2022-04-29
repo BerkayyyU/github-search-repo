@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { githubApi, githubName } from '../assets/constants/github';
 import Repository, { RepositoryModel } from '../components/repository/repository';
 import User, { UserModel } from '../components/user/user';
-import Error from '../ui/Error';
-import Loading from '../ui/Loading';
+import Error from '../ui/error/error';
+import Loading from '../ui/loading/Loading';
 import styles from './profile.module.css';
 
 const Profile = () => {
