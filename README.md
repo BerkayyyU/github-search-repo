@@ -2,7 +2,7 @@
 
 ## About The Project
 
-'Github repositories with search functionality' was developed in [React](https://reactjs.org/) with the help of [Typescript](https://www.typescriptlang.org/), [Github Api](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/).
+'Github repositories with search functionality' was developed in [React](https://reactjs.org/) with the help of [Typescript](https://www.typescriptlang.org/), [Github API](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/).
 
 ## Getting Started
 
@@ -28,7 +28,7 @@ npm start
 
 As soon as the project compiles, a new tab with address http://localhost:3000 will open on your default browser.
 
-### Run [Storybook](https://storybook.js.org/)
+### Running Storybook
 
 ```
 npm run storybook
@@ -37,9 +37,9 @@ npm run storybook
 ## Future Improvements
 
 <ul>
-    <li>Repositories pagination</li>
-    <li>Filter Repositories by type and language</li>
-    <li>Sort Repositories by selected order</li>
+    <li>Repositories pagination functionality</li>
+    <li>Filter repositories by type and language</li>
+    <li>Sort repositories by selected order</li>
     <li>Test cover</li>
     <li>GraphQL</li>
     <li>Search Github user with autocomplete</li>
@@ -48,4 +48,4 @@ npm run storybook
 
 ## Feedback
 
-After months of developing with Angular, I realized that I missed React. It was a lot of fun for me to use [Github Api](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/) for the first time. I would be appreciated to hear your feedback!
+After months of developing with Angular, I realized that I missed React. It was a lot of fun for me to use [Github API](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/) for the first time. I would be appreciated to hear your feedback.
