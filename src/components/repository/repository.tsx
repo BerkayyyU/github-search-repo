@@ -1,10 +1,10 @@
 import LanguageIcon from '../languageIcon/languageIcon';
 import styles from './repository.module.css';
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai';
-import { useEffect, useState } from 'react';
-import { dayInMilliseconds, hourInMilliseconds, minInMilliseconds, weekInMilliseconds } from '../../assets/constants/dates';
+import { useState } from 'react';
+import { calculateDateDiff } from '../../utils';
 
-export interface RepositoryModel {
+export class RepositoryModel {
   id: number;
   html_url: string;
   name: string;
@@ -13,45 +13,25 @@ export interface RepositoryModel {
   language: string;
   updated_at: string;
   stargazers_count: number;
+
+  constructor(item: any) {
+    this.id = item.id || '';
+    this.html_url = item.html_url || '';
+    this.name = item.name || '';
+    this.visibility = item.visibility || 'public';
+    this.description = item.description || '';
+    this.language = item.language || '';
+    this.updated_at = calculateDateDiff(item.updated_at) || '';
+    this.stargazers_count = item.stargazers_count || 0;
+  }
 }
 
 const Repository = ({ html_url, name, visibility, description, language, updated_at, stargazers_count }: RepositoryModel) => {
-  //Could have installed a 3rd party library(moment.js, date-fns etc.) to parse the date, but I did not find it necessary.
-  const calculateUpdatedDate = (date: string) => {
-    const dateInMilliseconds = new Date(date).getTime();
-    const nowInMilliseconds = Date.now();
-    switch (true) {
-      case nowInMilliseconds - dateInMilliseconds < minInMilliseconds:
-        return ` Updated ${Math.floor((nowInMilliseconds - dateInMilliseconds) / 1000)} seconds ago`;
-      case nowInMilliseconds - dateInMilliseconds < hourInMilliseconds:
-        return `Updated ${Math.floor((nowInMilliseconds - dateInMilliseconds) / minInMilliseconds)} minutes ago`;
-      case nowInMilliseconds - dateInMilliseconds < dayInMilliseconds:
-        return `Updated ${Math.floor((nowInMilliseconds - dateInMilliseconds) / hourInMilliseconds)} hours ago`;
-      case nowInMilliseconds - dateInMilliseconds < weekInMilliseconds:
-        return `Updated ${Math.floor((nowInMilliseconds - dateInMilliseconds) / dayInMilliseconds)} days ago`;
-      default:
-        const defaultDate = setDefaultDate(new Date(date));
-        return defaultDate;
-    }
-  };
-
-  const setDefaultDate = (date: Date) => {
-    const day = (date.getDate() < 10 ? '0' : '') + date.getDate();
-    const month = (date.getMonth() + 1 < 10 ? '0' : '') + (date.getMonth() + 1);
-    const year = date.getFullYear();
-    return `Updated on ${day}/${month}/${year}`;
-  };
-  const [calculatedDate, setCalculatedDate] = useState<any>('');
-
   //does nothing special
   const [star, setStarVal] = useState<boolean>(stargazers_count === 1 ? true : false);
   const setStar = () => {
     setStarVal(!star);
   };
-
-  useEffect(() => {
-    setCalculatedDate(calculateUpdatedDate(updated_at));
-  }, []);
 
   // make the first character uppercase
   const vis = visibility.charAt(0).toUpperCase() + visibility.slice(1);
@@ -69,7 +49,7 @@ const Repository = ({ html_url, name, visibility, description, language, updated
         <div className="flex items-center my-4">
           <LanguageIcon langName={language} />
           <p className="ml-2">{language}</p>
-          <p className="text-left ml-4">{calculatedDate}</p>
+          <p className="text-left ml-4">{updated_at}</p>
         </div>
       </div>
       <div className={styles.star} onClick={setStar}>

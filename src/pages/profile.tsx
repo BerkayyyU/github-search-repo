@@ -27,7 +27,8 @@ const Profile = () => {
           setErrorRepos(data.message);
           return;
         }
-        setRepos(data.items);
+        const mappedRepos = data.items.map((item: any) => new RepositoryModel(item));
+        setRepos(mappedRepos);
       });
   }, 500);
 
@@ -60,7 +61,8 @@ const Profile = () => {
           //error handling
           setErrorRepos(data.message);
         } else {
-          setRepos(data);
+          const mappedRepos = data.map((item: any) => new RepositoryModel(item));
+          setRepos(mappedRepos);
         }
         setLoading(false);
       });
