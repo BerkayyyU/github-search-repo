@@ -3,22 +3,21 @@
   background-color: var(--color-header-bg);
 }
 
-/* #custom-scrollbar{
-  &::-webkit-scrollbar {
-    width: 0.5rem;
-    height: 0.5rem;
-  }
+.spinner {
+  border: 5px solid #f3f3f3;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  border-top: 5px solid #555;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
 
-  &::-webkit-scrollbar-track {
-    background: var(--menu-bg);
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: var(--menu-bg);
-    border-radius: 20px;
+  100% {
+    transform: rotate(360deg);
   }
-
-  &:hover::-webkit-scrollbar-thumb {
-    background-color: #666666;
-  }
-} */
+}
