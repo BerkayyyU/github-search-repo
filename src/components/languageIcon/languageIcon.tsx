@@ -1,35 +1,37 @@
 import { ReactElement } from 'react';
-import { DiJavascript1 } from 'react-icons/di';
-import { SiTypescript, SiHtml5, SiJava, SiPython, SiVuedotjs } from 'react-icons/si';
+import { SiJavascript, SiTypescript, SiHtml5, SiJava, SiPython, SiVuedotjs } from 'react-icons/si';
 
 export interface LanguageIconModel {
   name: string;
   icon: ReactElement;
 }
+
+export const iconSize = 20;
+
 export const LanguageIcons: LanguageIconModel[] = [
   {
     name: 'JavaScript',
-    icon: <DiJavascript1 />,
+    icon: <SiJavascript size={iconSize} />,
   },
   {
     name: 'TypeScript',
-    icon: <SiTypescript />,
+    icon: <SiTypescript size={iconSize} />,
   },
   {
     name: 'HTML',
-    icon: <SiHtml5 />,
+    icon: <SiHtml5 size={iconSize} />,
   },
   {
     name: 'Java',
-    icon: <SiJava />,
+    icon: <SiJava size={iconSize} />,
   },
   {
     name: 'Python',
-    icon: <SiPython />,
+    icon: <SiPython size={iconSize} />,
   },
   {
     name: 'Vue',
-    icon: <SiVuedotjs />,
+    icon: <SiVuedotjs size={iconSize} />,
   },
 ];
 

@@ -1,5 +1,6 @@
 import styles from './user.module.css';
 import { FiUsers } from 'react-icons/fi';
+import { iconSize } from '../languageIcon/languageIcon';
 
 export interface UserModel {
   id: number;
@@ -21,7 +22,7 @@ const User = ({ avatar_url, html_url, login, name, followers, following }: UserM
         </a>
         <p className="text-xl mb-2">{login}</p>
         <div className="flex items-center">
-          <FiUsers className="mr-2" />
+          <FiUsers className="mr-2" size={iconSize} />
           <div className="w-full flex flex-wrap items-center">
             <p className="mr-2">
               <span className="text-white">{followers}</span> followers

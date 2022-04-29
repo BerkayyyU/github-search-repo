@@ -16,6 +16,7 @@ export interface RepositoryModel {
 }
 
 const Repository = ({ html_url, name, visibility, description, language, updated_at, stargazers_count }: RepositoryModel) => {
+  //Could have installed a 3rd party library(moment.js, date-fns etc.) to parse the date, but I did not find it necessary.
   const calculateUpdatedDate = (date: string) => {
     const dateInMilliseconds = new Date(date).getTime();
     const nowInMilliseconds = Date.now();

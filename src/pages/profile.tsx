@@ -1,30 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { githubApi, githubName } from '../assets/constants/github';
+import { useEffect, useState } from 'react';
+import { githubApi, githubName, repoPerPage, repoSortQuery } from '../assets/constants/github';
 import Repository, { RepositoryModel } from '../components/repository/repository';
 import User, { UserModel } from '../components/user/user';
 import Error from '../ui/error/error';
 import Loading from '../ui/loading/Loading';
 import styles from './profile.module.css';
+import debounce from 'lodash.debounce';
 
 const Profile = () => {
   const [repos, setRepos] = useState<RepositoryModel[]>([]);
 
-  const [filteredRepos, searchRepos] = useState<RepositoryModel[]>([]);
   const [user, setUser] = useState<UserModel | null>(null);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [errorReposMsg, setErrorRepos] = useState<string>('');
   const [errorUserMsg, setErrorUser] = useState<string>('');
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const filteredRepos = repos.filter((repo: RepositoryModel) => repo.name.toLowerCase().includes(e.currentTarget.value.toLowerCase()));
-    searchRepos(filteredRepos);
-  };
-
-  useEffect(() => {
-    fetchUser();
-    fetchUserRepos();
-  }, []);
+  // Installed 3rd party library to debounce the search to avoid continuous requests
+  const inputChange = debounce((val: string) => {
+    const queryString = 'q=' + encodeURIComponent(`${val} in:name user:${githubName}`);
+    fetch(`${githubApi}search/repositories?` + new URLSearchParams(queryString))
+      .then((res) => res.json())
+      .then((data) => {
+        //error handling
+        if (data.message) {
+          setErrorRepos(data.message);
+          return;
+        }
+        setRepos(data.items);
+      });
+  }, 500);
 
   const fetchUser = async () => {
     setLoading(true);
@@ -41,9 +46,14 @@ const Profile = () => {
       });
   };
 
+  // According to my resources(me and myself) %99 of the github users have less than 100 repositories
+  // So I decided to fetch only 100 repositories
+  // Best Practices:
+  // 1) Add pagination or infinitive loading to allow users to see all the repositories
+  // 2) Set repoPerPage to default value for a better performance with less loading screen
   const fetchUserRepos = async () => {
     setLoading(true);
-    fetch(`${githubApi}users/${githubName}/repos`)
+    fetch(`${githubApi}users/${githubName}/repos?` + new URLSearchParams({ sort: repoSortQuery, per_page: repoPerPage }))
       .then((response) => response.json())
       .then((data) => {
         if (data.message) {
@@ -51,11 +61,15 @@ const Profile = () => {
           setErrorRepos(data.message);
         } else {
           setRepos(data);
-          searchRepos(data);
         }
         setLoading(false);
       });
   };
+
+  useEffect(() => {
+    fetchUser();
+    fetchUserRepos();
+  }, []);
 
   return (
     <div>
@@ -78,10 +92,10 @@ const Profile = () => {
           )}
           {!errorReposMsg ? (
             <div className="w-full flex flex-col items-center md:ml-8">
-              <input type="text" onChange={handleChange} placeholder="Find a repository..." className={styles.search} />
+              <input type="text" onChange={(event) => inputChange(event.target.value)} placeholder="Find a repository..." className={styles.search} />
               <ul className="h-full w-full overflow-auto">
-                {filteredRepos.length > 0 ? (
-                  filteredRepos.map((repo: RepositoryModel) => {
+                {repos.length > 0 ? (
+                  repos.map((repo: RepositoryModel) => {
                     return (
                       <Repository
                         key={repo.id}
