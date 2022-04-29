@@ -2,6 +2,7 @@
 
 ## About The Project
 
+[Live Demo](https://github-search-repo-berkay.netlify.app/)
 'Github repositories with search functionality' was developed in [React](https://reactjs.org/) with the help of [Typescript](https://www.typescriptlang.org/), [Github API](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/).
 
 ## Getting Started
@@ -11,7 +12,7 @@
 First of all, clone the project.
 
 ```
-git clone https://github.com/BerkayyyU/mvst-coding-react.git
+git clone https://github.com/BerkayyyU/github-search-repo.git
 ```
 
 Open your terminal, navigate to the app's directory, and install the required dependencies.
