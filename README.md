@@ -3,6 +3,7 @@
 ## About The Project
 
 [Live Demo](https://github-search-repo-berkay.netlify.app/)
+<br>
 'Github repositories with search functionality' was developed in [React](https://reactjs.org/) with the help of [Typescript](https://www.typescriptlang.org/), [Github API](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/).
 
 ## Getting Started
@@ -46,6 +47,7 @@ npm run storybook
     <li>Search Github user with autocomplete</li>
     <li>Select Github user dynamically</li>
 <ul>
+<br>
 
 ## Feedback
 
