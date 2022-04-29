@@ -47,7 +47,6 @@ npm run storybook
     <li>Search Github user with autocomplete</li>
     <li>Select Github user dynamically</li>
 <ul>
-<br>
 
 ## Feedback
 
