@@ -11,4 +11,3 @@ export const parameters = {
 import '../src/index.css';
 import '../src/assets/styles/global.css';
 import '../src/assets/styles/variables.css';
-import '../src/utils.ts';

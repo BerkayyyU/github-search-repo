@@ -8,6 +8,8 @@ export interface LanguageIconModel {
 
 export const iconSize = 20;
 
+// Languages that my projects are written in
+// If 'user select' feature is enabled, it would be better to find out another solution
 export const LanguageIcons: LanguageIconModel[] = [
   {
     name: 'JavaScript',

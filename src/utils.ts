@@ -1,7 +1,7 @@
 import { dayInMilliseconds, hourInMilliseconds, minInMilliseconds, weekInMilliseconds } from './assets/constants/dates';
 
 //Could have installed a 3rd party library(moment.js, date-fns etc.) to parse the date, but I did not find it necessary.
-//Finds the difference between now and given date. Returns default date if the given date is more than a week ago.
+//Gets the difference between now and given date. Returns default date, if the given date is more than a week ago.
 export const calculateDateDiff = (date: string) => {
   const diffInMilliseconds = Date.now() - new Date(date).getTime();
   switch (true) {
