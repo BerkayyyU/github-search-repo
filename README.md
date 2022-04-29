@@ -46,6 +46,6 @@ npm run storybook
     <li>Select Github user dynamically</li>
 <ul>
 
-## Feedback
+<h2 align="left">Feedback</h2>
 
-After months of developing with Angular, I realized that I missed React. It was a lot of fun for me to use [Github API](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/) for the first time. I would be appreciated to hear your feedback.
+<p align="left">After months of developing with Angular, I realized that I missed React. It was a lot of fun for me to use [Github API](https://docs.github.com/en/rest) and [Storybook](https://storybook.js.org/) for the first time. I would be appreciated to hear your feedback.</p>
